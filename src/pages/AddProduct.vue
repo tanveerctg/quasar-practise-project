@@ -16,13 +16,13 @@
 
         
       </form>-->
-      <Formbuilder :inputs="inputs"/>
+      <formbuilder :inputs="inputs"/>
     </div>
 
 </template>
 
 <script>
-import Formbuilder from '../Formbuilder.vue';
+import formbuilder from '../form-builder.vue';
 export default {
   name: 'addproduct',
   data:function(){
@@ -32,11 +32,15 @@ export default {
       trackingCode:null,
       unitPrice: null,
       inputs:[
-        {name:'first_name',label:'First Name',type:'input'},
-        {name:'last_name',label:'Last Name',type:'input'},
-        {name:'full_name',label:'Full Name',type:'input'},
-        {name:'selectBox',label:'Select Box',type:'select',options: [
-          'A', 'B', 'C', 'D', 'E'
+        {name:'first_name',label:'First Name',type:'input',rules:'Please enter your firstname',hint:"This field can't be empty"},
+        {name:'last_name',label:'Last Name',type:'input',rules:'Please enter your lastname',hint:"This field can't be empty"},
+        {name:'full_name',label:'Full Name',type:'input',rules:'Please enter your fullname',hint:"This field can't be empty"},
+        {name:'age',type:'select',label:'Age',options: [
+          '10-20', '21-30', '31-40', '41-50', '51-60'
+        ],hint:"This field can't be empty",rules:'Please enter your age'
+        },
+        {name:'hobby',type:'select',label:'Hobby',options: [
+          'Gaming', 'Programming', 'Gardening', 'Other'
         ]
         },
         {name:'M',label:'Size',type:'checkbox'
@@ -51,7 +55,7 @@ export default {
     }
   },
   components:{
-    Formbuilder
+    formbuilder
   }
 }
 </script>
