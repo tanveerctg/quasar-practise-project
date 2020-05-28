@@ -43,7 +43,7 @@ export default {
           'Gaming', 'Programming', 'Gardening', 'Other'
         ]
         },
-        {name:'M',label:'Size',type:'checkbox'
+        {name:'married',label:'Married',type:'checkbox'
         }
         ]
     }

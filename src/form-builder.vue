@@ -6,7 +6,7 @@
               <q-select v-if="input.type=='select'" filled v-model="formValues[input.name]" :options="input.options" :label="input.label" :hint="input.hint" :rules="[ val => val && val.length > 0 || input.rules]"/>  
               <q-checkbox v-if="input.type=='checkbox'" left-label v-model="formValues[input.name]" :label="input.label" style="margin-top:-15px;margin-bottom:15px;"/>
             </div>
-            <input type="submit" value="Add Product" class="addProductBtn" :disabled="isDisabled"/>
+            <input type="submit" value="Submit" class="addProductBtn" :disabled="isDisabled"/>
            </q-form>
         </div>
 </template>
@@ -31,6 +31,8 @@ export default {
           icon: 'cloud_done',
           message: 'Submitted'
         })
+        // send data to the database
+        console.log(this.formValues)
       e.preventDefault();
     },
     checkSubmission:function(){
@@ -43,12 +45,7 @@ export default {
   },
   computed: {
     isDisabled() {
-      // evaluate whatever you need to determine disabled here...
-      if(!this.formValues['first_name'] || !this.formValues['last_name'] || !this.formValues['full_name'] || !this.formValues['age']){
-        return true;
-      }else{
-        return false;
-      }
+      return !this.formValues['first_name'] || !this.formValues['last_name'] || !this.formValues['full_name'] || !this.formValues['age'];
     }
   }
 }
