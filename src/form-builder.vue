@@ -45,7 +45,17 @@ export default {
   },
   computed: {
     isDisabled() {
-      return !this.formValues['first_name'] || !this.formValues['last_name'] || !this.formValues['full_name'] || !this.formValues['age'];
+      const mapVal=this.inputs.filter(input=> input.required==true ).map(val=>val.name);
+      let res;
+      for (const element of mapVal) {
+        if(this.formValues[element]) {
+          res=false;
+        }else{
+          res=true;
+          break;
+        }
+      }
+      return res;
     }
   }
 }

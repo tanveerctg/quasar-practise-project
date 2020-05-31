@@ -32,18 +32,20 @@ export default {
       trackingCode:null,
       unitPrice: null,
       inputs:[
-        {name:'first_name',label:'First Name',type:'input', rules:[ val => val && val.length >= 8 || 'Firstname should be atleast 8 characters'],hint:"First Name"},
-        {name:'last_name',label:'Last Name',type:'input',rules:[ val => val && val.length >= 6 || 'Lastname should be atleast 6 characters'],hint:"Last Name"},
-        {name:'full_name',label:'Full Name',type:'input',rules:[ val => val && val.length >= 10 || 'Fullname should be atleast 10 characters'],hint:"Full Name"},
+        {name:'first_name',label:'First Name',type:'input', rules:[ val => val && val.length >= 8 || 'Firstname should be atleast 8 characters'],hint:"First Name",required:true},
+        {name:'last_name',label:'Last Name',type:'input',rules:[ val => val && val.length >= 6 || 'Lastname should be atleast 6 characters'],hint:"Last Name",required:true},
+        {name:'full_name',label:'Full Name',type:'input',rules:[ val => val && val.length >= 10 || 'Fullname should be atleast 10 characters'],hint:"Full Name",required:true},
         {name:'age',type:'select',label:'Age',options: [
           '10-20', '21-30', '31-40', '41-50', '51-60'
         ],hint:"",rules:[val => !!val || 'Age is required']
+        ,required:true
         },
         {name:'hobby',type:'select',label:'Hobby',options: [
           'Gaming', 'Programming', 'Gardening', 'Other'
         ]
+        ,required:false
         },
-        {name:'married',label:'Married',type:'checkbox'
+        {name:'married',label:'Married',type:'checkbox' ,required:false
         }
         ]
     }
