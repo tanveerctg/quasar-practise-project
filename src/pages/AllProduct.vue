@@ -25,7 +25,12 @@ export default {
       },
       {
         fields:[
-          {name:'age',label:'Age',pattern:/^0*([0-9]|[1-8][0-9]|9[0-9]|100)$/ ,type:'input',rules:[ val => val && val <= 100 || 'Please enter a valid age'],hint:"Your age",required:false} 
+          {name:'age',label:'Age',pattern:/^0*([0-9]|[1-8][0-9]|9[0-9]|100)$/ ,type:'input',rules:[ val => val && val <= 100 || 'Please enter a valid age'],hint:"Your age",required:true} 
+        ]
+      },
+      {
+        fields:[
+           {name:'birthday',label:'Birthday',type:'input',hint:"Birthday",required:false}
         ]
       },
       {
