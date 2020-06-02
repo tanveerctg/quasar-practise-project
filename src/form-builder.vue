@@ -23,8 +23,7 @@ export default {
       }
   },
   methods:{
-    checkForm:function(e){
-       
+    checkForm:function(e){      
         this.$q.notify({
           color: 'green-4',
           textColor: 'white',
