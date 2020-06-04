@@ -1,18 +1,13 @@
 <template>
      <div class="addProduct__wrapper">
-     
         <q-form @submit.prevent="checkForm"> 
             <div v-for="input in inputList[currentState].fields" :key="input.name">
-            <transition
-              appear
-              enter-active-class="animated fadeIn "
-              leave-active-class="animated fadeOut"
-            >
-              <q-input v-if="input.type=='email'" filled :label="input.label" label-color="text-white" :rules="input.rules" v-model="formValues[input.name]" :hint="input.hint" standout="bg-grey-1 text-grey-7" square/>
-              <q-input v-if="input.type=='input'" filled v-model="formValues[input.name]" :label="input.label" label-color="text-white" :rules="input.rules"  :hint="input.hint" standout="bg-grey-1 text-grey-7" square/>
-              <q-select v-if="input.type=='select'" filled v-model="formValues[input.name]" :options="input.options" :label="input.label" :hint="input.hint ? input.hint : null" :rules="input.rules ? input.rules : null"/>  
-              <q-checkbox v-if="input.type=='checkbox'" left-label v-model="formValues[input.name]" :label="input.label" style="margin-top:-15px;margin-bottom:15px;"/>
-            </transition>
+                <transition>
+                <q-input v-if="input.type=='email'" filled :label="input.label" label-color="text-white" :rules="input.rules" v-model="formValues[input.name]" :hint="input.hint" standout="bg-grey-1 text-grey-7" square/>
+                <q-input v-if="input.type=='input'" filled v-model="formValues[input.name]" :label="input.label" label-color="text-white" :rules="input.rules"  :hint="input.hint" standout="bg-grey-1 text-grey-7" square/>
+                <q-select v-if="input.type=='select'" filled v-model="formValues[input.name]" :options="input.options" :label="input.label" :hint="input.hint ? input.hint : null" :rules="input.rules ? input.rules : null"/>  
+                <q-checkbox v-if="input.type=='checkbox'" left-label v-model="formValues[input.name]" :label="input.label" style="margin-top:-15px;margin-bottom:15px;"/>
+                 </transition>
             </div>
             <button v-if="currentState < inputList.length-1" @click="currentState++" :disabled="checkNext" class="next">Next</button>
             <button v-if="currentState == inputList.length-1 || currentState > 0" @click="currentState--" class="back">Back</button>
@@ -23,6 +18,7 @@
 
 <script>
 import Vue from 'vue';
+import transition from './transition.vue';
 
 export default {
   props:['inputList','activeState'],
@@ -32,6 +28,9 @@ export default {
           currentState:this.activeState,
           formValues:{}
       }
+  },
+  components:{
+    transition
   },
   methods:{
     checkForm:function(e){      
@@ -101,7 +100,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .q-select__dropdown-icon{
     color:black !important;
   }
