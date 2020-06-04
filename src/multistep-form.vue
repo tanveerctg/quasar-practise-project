@@ -1,6 +1,6 @@
 <template>
      <div class="addProduct__wrapper">
-        <q-form @submit.prevent="checkForm"> 
+        <q-form @submit.enter.stop="checkForm"> 
             <div v-for="input in inputList[currentState].fields" :key="input.name">
               <transition animation="animated animate__slideInLeft">
                 <q-input v-if="input.type=='email'" filled :label="input.label" label-color="text-white" :rules="input.rules" v-model="formValues[input.name]" :hint="input.hint" standout="bg-grey-1 text-grey-7" square/>
@@ -15,8 +15,8 @@
         </q-form>
      </div>
 </template>
-
-<script>
+ 
+<script> 
 import Vue from 'vue';
 import transition from './transition.vue';
 
@@ -41,7 +41,7 @@ export default {
         //   message: 'Submitted'
         // })
         // send data to the database
-        if(this.currentState !==0){
+        if(this.currentState === this.inputList.length-1){
           // const {border}=this.$refs;
           // border.style.width="100%";
           console.log(this.formValues)

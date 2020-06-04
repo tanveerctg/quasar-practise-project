@@ -20,7 +20,7 @@ export default {
         fields:[
           {name:'full_name',label:'Full Name',pattern:/[\s\S]{10,}/,type:'input',rules:[ val => val && val.length >= 10 || 'Fullname should be atleast 10 characters'],hint:"Full Name",required:true},
           {name:'first_name',label:'First Name',type:'input',pattern:/[\s\S]{8,}/, rules:[ val => val && val.length >= 8 || 'Firstname should be atleast 8 characters'],hint:"First Name",required:true},
-          {name:'last_name',label:'Last Name',type:'input',pattern:/[\s\S]{6,}/,rules:[ val => val && val.length >= 6 || 'Lastname should be atleast 6 characters'],hint:"Last Name",required:true}    
+          {name:'last_name',label:'Last Name (Optional)',type:'input',pattern:/[\s\S]{6,}/,rules:[ val => val && val.length >= 6 || 'Lastname should be atleast 6 characters'],hint:"Last Name",required:false}    
         ]
       },
       {
@@ -30,7 +30,7 @@ export default {
       },
       {
         fields:[
-           {name:'birthday',label:'Birthday',type:'input',hint:"Birthday",required:false}
+           {name:'birthday',label:'Birthday (Optional)',type:'input',hint:"Birthday",required:false}
         ]
       },
       {
