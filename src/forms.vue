@@ -33,6 +33,10 @@
         methods:{
             checkForm:function(e){
                 // send data to the database
+               this.$q.notify({
+                  message: 'Account Created Sucessfully.',
+                  color: '#333333'
+                })
               console.log(this.formValues)
                 // if(this.current === this.inputList.length-1){
                 //   console.log(this.formValues)
