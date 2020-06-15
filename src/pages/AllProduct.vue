@@ -31,7 +31,6 @@ export default {
           {name:'password',label:'Password',type:'input',pattern:/[\s\S]{6,}/,rules:[ val => val && val.length >= 6 || 'Password should be atleast 6 character'],hint:"Password",required:true}
         ]
       }
-
       ]
     }
   },

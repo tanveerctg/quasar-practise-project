@@ -6,7 +6,7 @@
                   <span class="digit" :class="{completedSteps:index <= completed}" >{{index+1}}</span>
                   <div :class="{rightLine:index<inputList.length-1}"></div>
                 </span>
-                <span class="step__name" :style="{ 'margin-left': index===inputList.length-1 ? '-20px' : '-7px','color': index <= currentState? '#824E81' : '#838383' }">{{step.step_name}}</span>
+                <span class="step__name" :style="{ 'margin-left': index===inputList.length-1 ? '-20px' : '-5px','color': index <= currentState? '#824E81' : '#838383' }">{{step.step_name}}</span>
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@
   }
   .steps{
     display:flex;
-    padding:15px 20px;
+    padding: 45px 25px 0 25px;
   }
   .addFlexFull{
     flex:1;

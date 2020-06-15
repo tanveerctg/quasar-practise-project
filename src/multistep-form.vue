@@ -2,8 +2,8 @@
      <div class="addProduct__wrapper">
 
         <tabs v-on:tabHandler="tabHandler" :inputList="inputList" :currentState="currentState"/>
-        <forms :inputList="inputList" :currentState="currentState" :completed="completed" v-on:updateComplete="updateComplete" v-on:updateCurrentState="updateCurrentState"/>
         <stepper :inputList="inputList" :currentState="currentState" :completed="completed"/>
+        <forms :inputList="inputList" :currentState="currentState" :completed="completed" v-on:updateComplete="updateComplete" v-on:updateCurrentState="updateCurrentState"/>
 
      </div>
 </template>

@@ -120,7 +120,7 @@
 
 <style scoped>
      .form{
-    padding: 30px 20px
+    padding: 35px 20px 35px 20px;;
   }
   .border{
     position:absolute;
