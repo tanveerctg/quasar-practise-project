@@ -11,7 +11,7 @@
                 <q-checkbox v-if="input.type=='checkbox'" left-label v-model="formValues[input.name]" :label="input.label" style="margin-top:-15px;margin-bottom:15px;"/>
               </transition>
             </div>
-            <button v-if="currentState < inputList.length-1" @click="nextStep" :disabled="checkNext" class="next">Next</button>
+            <button v-if="currentState < inputList.length-1" @click="nextStep(currentState)" :disabled="checkNext" class="next">Next</button>
             <button v-if="currentState == inputList.length-1 || currentState > 0" @click="updateBack" class="back">Back</button>
             <input v-if="currentState == inputList.length-1" type="submit" value="Submit" class="addProductBtn" :disabled="isDisabled"/>
     </q-form>
@@ -33,8 +33,9 @@
         methods:{
             checkForm:function(e){
                 // send data to the database
+                console.log(this.formValues);
                 if(this.currentState === this.inputList.length-1){
-                  console.log(this.formValues);
+
                   this.$q.notify({
                   message: 'Account Created Sucessfully.',
                   color: '#333333'
@@ -52,14 +53,23 @@
             }
 
             },
-            nextStep:function(){
+            nextStep:function(index){
+
              let updateCompletedVal=this.completed;
              let updateCurrentVal=this.currentState;
-             updateCompletedVal++;
-             updateCurrentVal++;
+             console.log('index',index,'updateCompletedVal',updateCompletedVal)
 
+
+              if(index == updateCompletedVal){
+                if(updateCompletedVal < this.inputList.length-1){
+                  updateCompletedVal++;
+                  this.$emit('updateComplete',updateCompletedVal)
+                }
+              }
+
+             updateCurrentVal++;
              this.$emit('updateCurrentState',updateCurrentVal)
-             this.$emit('updateComplete',updateCompletedVal)
+
             },
             updateBack:function(){
                 let updateCurrentVal=this.currentState;
@@ -104,7 +114,8 @@
                 if(!required) return;
 
                 if(this.formValues[name]){
-                if(pattern.test(String(this.formValues[name]).toLowerCase())){
+
+                if(pattern.test(this.formValues[name])){
                     res=false;
                 }else{
                     res=true;
