@@ -82,15 +82,13 @@
             <q-item  :active="link === 'dashboard'"
                      @click="link = 'dashboard'" 
                      clickable v-ripple>
-              <q-item-section avatar>
-                <q-icon name="dashboard" />
-              </q-item-section>
-
               <q-item-section>
                 Dashboard
               </q-item-section>
+              <q-item-section avatar>
+                <q-icon name="dashboard" />
+              </q-item-section>
             </q-item>
-
             <q-item 
             :active="link === 'customers'"
             @click="link = 'customers'" 

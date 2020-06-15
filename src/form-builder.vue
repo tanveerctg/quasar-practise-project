@@ -3,7 +3,7 @@
         <q-form @submit="checkForm">
             <div v-for="input in inputs" :key="input.name">
               <q-input v-if="input.type=='input'" filled v-model="formValues[input.name]" :label="input.label" label-color="text-white" :rules="input.rules"  :hint="input.hint" standout="bg-grey-1 text-grey-7" square/>
-              <q-select v-if="input.type=='select'" filled v-model="formValues[input.name]" :options="input.options" :label="input.label" :hint="input.hint ? input.hint : null" :rules="input.rules ? input.rules : null"/>  
+              <q-select v-if="input.type=='select'" filled v-model="formValues[input.name]" :options="input.options" :label="input.label" :hint="input.hint ? input.hint : null" :rules="input.rules ? input.rules : null"/>
               <q-checkbox v-if="input.type=='checkbox'" left-label v-model="formValues[input.name]" :label="input.label" style="margin-top:-15px;margin-bottom:15px;"/>
             </div>
             <input type="submit" value="Submit" class="addProductBtn" :disabled="isDisabled"/>
@@ -23,7 +23,7 @@ export default {
       }
   },
   methods:{
-    checkForm:function(e){      
+    checkForm:function(e){
         this.$q.notify({
           color: 'green-4',
           textColor: 'white',
@@ -60,7 +60,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
  .q-select__dropdown-icon{
    color:black !important;
  }
