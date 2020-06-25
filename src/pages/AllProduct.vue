@@ -26,6 +26,7 @@ export default {
           {name:'email',label:'Email',type:'email',pattern:emailPattern,rules:[ val => val && emailPattern.test(String(val).toLowerCase()) || 'Please enter correct email' ],hint:"Email",required:true}
         ]
       },
+
       {
         step_name: 'Final Step!',  step_label: 'Password',field_list:[
           {name:'password',label:'Password',type:'input',pattern:/[\s\S]{6,}/,rules:[ val => val && val.length >= 6 || 'Password should be atleast 6 character'],hint:"Password",required:true}

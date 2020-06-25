@@ -1,5 +1,5 @@
 <template>
-    <q-form @submit.enter.stop="checkForm" class="form">
+    <q-form @submit="checkForm" class="form">
             <transition>
               <h6 class="label_text">{{inputList[currentState].step_label}}</h6>
             </transition>
@@ -33,9 +33,9 @@
         methods:{
             checkForm:function(e){
                 // send data to the database
-                console.log(this.formValues);
-                if(this.currentState === this.inputList.length-1){
 
+                if(this.currentState === this.inputList.length-1){
+                  console.log(this.formValues);
                   this.$q.notify({
                   message: 'Account Created Sucessfully.',
                   color: '#333333'
@@ -57,8 +57,6 @@
 
              let updateCompletedVal=this.completed;
              let updateCurrentVal=this.currentState;
-             console.log('index',index,'updateCompletedVal',updateCompletedVal)
-
 
               if(index == updateCompletedVal){
                 if(updateCompletedVal < this.inputList.length-1){
@@ -83,46 +81,47 @@
             const mapVal=this.inputList.map(step=>step.field_list.filter(input=> input.required==true)).flat();
 
             let res;
-           for (const element of mapVal) {
-                const {name,pattern,required}=element;
 
+            for (const element of mapVal) {
+                  const {name,pattern,required}=element;
+
+                    // if required false then dont need to check further steps for that inputfield
+                    if(!required) return;
+
+                    // if an inputfield is required and the name of that field is empty but exists in the formValues Object ( data obj ) in that case res will always be true
+                    if(!this.formValues[name]){ res=true; break;};
+
+                    // checking the inputfield's value based on the regex
+                    if(pattern.test(String(this.formValues[name]).toLowerCase())){
+                        res=false;
+                    }else{
+                        res=true;
+                        break;
+                    }
+              }
+                  return res;
+              }
+
+            ,
+            checkNext(){
+            const mapVal=this.inputList[this.currentState].field_list.filter(input=> input.required==true );
+
+            let res;
+            for (const element of mapVal) {
+              const {name,pattern,required}=element;
+
+                // if required false then dont need to check further steps for that inputfield
                 if(!required) return;
 
-                if(this.formValues[name]){
+                // if an inputfield is required and the name of that field is empty but exists in the formValues Object ( data obj ) in that case res will always be true
+                if(!this.formValues[name]){ res=true; break;};
+
+                // checking the inputfield's value based on the regex
                 if(pattern.test(String(this.formValues[name]).toLowerCase())){
                     res=false;
                 }else{
                     res=true;
                     break;
-                }
-                }else{
-                res=true;
-                }
-            }
-
-            return res;
-            },
-            checkNext(){
-            const mapVal=this.inputList[this.currentState].field_list.filter(input=> input.required==true );
-
-            //collect name and pattern and check
-
-            let res;
-            for (const element of mapVal) {
-                const {name,pattern,required}=element;
-
-                if(!required) return;
-
-                if(this.formValues[name]){
-
-                if(pattern.test(this.formValues[name])){
-                    res=false;
-                }else{
-                    res=true;
-                    break;
-                }
-                }else{
-                res=true;
                 }
             }
 
